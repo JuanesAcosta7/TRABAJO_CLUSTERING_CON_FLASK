@@ -1,0 +1,79 @@
+body {
+    background: linear-gradient(135deg, #050816, #0f172a, #140b2d);
+    font-family: 'Poppins', sans-serif;
+    color: #dbeafe;
+    min-height: 100vh;
+}
+
+.navbar-personalizado {
+    background: rgba(4, 8, 20, 0.95);
+    border-bottom: 1px solid rgba(34, 197, 94, 0.18);
+    backdrop-filter: blur(8px);
+}
+
+.marca {
+    color: #22c55e !important;
+    font-weight: 700;
+    letter-spacing: 1px;
+    text-shadow: 0 0 8px rgba(34, 197, 94, 0.6);
+}
+
+.nav-link {
+    color: #cbd5e1 !important;
+    transition: 0.25s;
+}
+
+.nav-link:hover,
+.nav-link.active {
+    color: #a855f7 !important;
+    text-shadow: 0 0 8px rgba(168, 85, 247, 0.7);
+}
+
+.contenedor-principal {
+    margin-top: 3rem;
+    margin-bottom: 3rem;
+}
+
+.titulo-principal {
+    text-align: center;
+    font-weight: 700;
+    color: #22c55e;
+    margin-bottom: 2rem;
+    text-shadow: 0 0 12px rgba(34, 197, 94, 0.55);
+}
+
+.subtitulo {
+    text-align: center;
+    color: #a855f7;
+    font-weight: 600;
+    margin-top: 2rem;
+    margin-bottom: 1rem;
+    text-shadow: 0 0 8px rgba(168, 85, 247, 0.45);
+}
+
+.caja-texto {
+    background: rgba(8, 15, 35, 0.92);
+    border: 1px solid rgba(34, 197, 94, 0.12);
+    border-left: 4px solid #22c55e;
+    border-radius: 16px;
+    padding: 1.4rem 1.5rem;
+    margin-bottom: 1.2rem;
+    box-shadow: 0 0 20px rgba(0, 0, 0, 0.35);
+}
+
+.caja-texto p {
+    margin: 0;
+    line-height: 1.8;
+    color: #dbeafe;
+}
+
+.link-dataset {
+    color: #22c55e;
+    font-weight: 600;
+    text-decoration: none;
+}
+
+.link-dataset:hover {
+    color: #a855f7;
+    text-decoration: underline;
+}

@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <title>Capacidad Hospitalaria - Modelo</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet">
+</head>
+<body>
+
+<nav class="navbar navbar-expand-lg navbar-dark navbar-personalizado">
+    <div class="container">
+        <a class="navbar-brand marca" href="/">CapacidadHospitalaria</a>
+
+        <div class="collapse navbar-collapse">
+            <ul class="navbar-nav ms-auto">
+                <li class="nav-item">
+                    <a class="nav-link" href="/">Problema</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="/dataset">Dataset</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link active" href="/modelo">Modelo</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="/resultados">Resultados</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="/interpretacion">Interpretación</a>
+                </li>
+            </ul>
+        </div>
+    </div>
+</nav>
+
+<div class="container contenedor-principal">
+
+    <h1 class="titulo-principal">Modelo K-Means</h1>
+
+    <div class="caja-texto">
+        <p>
+            En este proyecto se utilizó el algoritmo K-Means Clustering, una técnica de aprendizaje
+            no supervisado que permite agrupar registros con características similares.
+        </p>
+
+        <p class="mt-3">
+            El algoritmo funciona asignando cada registro al centroide más cercano, formando grupos
+            de datos internamente similares y externamente diferentes respecto a otros clusters.
+        </p>
+    </div>
+
+    <h3 class="subtitulo">Conceptos Principales</h3>
+
+    <div class="caja-texto">
+        <p><strong>Cluster:</strong> conjunto de registros con características similares.</p>
+        <p class="mt-2"><strong>Centroide:</strong> punto central que representa cada agrupamiento.</p>
+        <p class="mt-2"><strong>Distancia:</strong> criterio utilizado para asignar cada registro al cluster más cercano.</p>
+
+    </div>
+
+    <h3 class="subtitulo">Ejecución del Modelo</h3>
+
+    <div class="caja-texto">
+        <p>
+            Para la ejecución del modelo se seleccionaron variables relacionadas con la capacidad
+            instalada de los prestadores de servicios de salud: código de capacidad, cantidad y grupo de capacidad.
+        </p>
+
+        <p class="mt-3">
+            Posteriormente, los datos fueron depurados eliminando registros nulos y transformando
+            variables categóricas en valores numéricos.
+        </p>
+
+        <p class="mt-3">
+            Finalmente, se aplicó un proceso de normalización mediante StandardScaler y se ejecutó
+            el algoritmo K-Means con un valor inicial de K igual a 3.
+        </p>
+    </div>
+
+    <h3 class="subtitulo">Método del Codo</h3>
+
+<div class="caja-texto">
+    <p>
+        Para justificar el número de clusters utilizado, se aplicó el método del codo,
+        el cual permite evaluar la inercia del modelo para diferentes valores de K
+        y detectar el punto donde la disminución deja de ser significativa.
+    </p>
+</div>
+
+<h3 class="subtitulo">Aplicación del Método del Codo</h3>
+
+<div class="caja-texto">
+    <p>
+        Se calculó la inercia del modelo para distintos valores de K con el fin de
+        analizar la variación interna de los agrupamientos.
+    </p>
+
+    <p class="mt-3">
+        La siguiente gráfica muestra el comportamiento de la inercia y permite
+        identificar visualmente el valor más adecuado para el número de clusters.
+    </p>
+
+    <div class="text-center mt-4">
+        <img src="{{ url_for('static', filename='metodo_codo.png') }}"
+             alt="Método del codo"
+             class="img-fluid rounded"
+             style="max-width: 850px; width: 100%;">
+    </div>
+
+        <p class="mt-4">
+            A partir de la gráfica del método del codo se observa que la disminución de la inercia
+            es pronunciada entre los primeros valores de K, pero comienza a estabilizarse a partir de
+            <strong>K = 4</strong>.
+        </p>
+
+        <p class="mt-3">
+            Esto indica que utilizar cuatro clusters permite captar una buena parte de la estructura
+            interna de los datos sin generar una segmentación innecesariamente compleja. Por esta razón,
+            se seleccionó <strong>K = 4</strong> como el número más adecuado de agrupamientos para el modelo.
+        </p>
+
+</div>
+
+</body>
+</html>

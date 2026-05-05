@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <title>Interpretación</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}">
+</head>
+<body>
+
+<nav class="navbar navbar-expand-lg navbar-dark navbar-personalizado">
+    <div class="container">
+        <a class="navbar-brand marca" href="/">CapacidadHospitalaria</a>
+
+        <div class="collapse navbar-collapse">
+            <ul class="navbar-nav ms-auto">
+                <li class="nav-item"><a class="nav-link" href="/">Problema</a></li>
+                <li class="nav-item"><a class="nav-link" href="/dataset">Dataset</a></li>
+                <li class="nav-item"><a class="nav-link" href="/modelo">Modelo</a></li>
+                <li class="nav-item"><a class="nav-link" href="/resultados">Resultados</a></li>
+                <li class="nav-item"><a class="nav-link active" href="/interpretacion">Interpretación</a></li>
+            </ul>
+        </div>
+    </div>
+</nav>
+
+<div class="container contenedor-principal">
+
+    <h1 class="titulo-principal">Interpretación de Resultados</h1>
+
+    <div class="caja-texto">
+
+        <p>
+            A partir de la aplicación del algoritmo K-Means Clustering sobre el dataset de
+            capacidad instalada en la red de prestadores de servicios de salud, se identificaron
+            cuatro grupos diferenciados de instituciones según sus características operativas.
+        </p>
+
+        <p class="mt-3">
+            <strong>Cluster 0:</strong> Está compuesto por prestadores con baja cantidad de capacidad
+            instalada y menor diversidad de servicios. Este grupo representa instituciones de menor
+            tamaño o con oferta limitada dentro del sistema de salud.
+        </p>
+
+        <p class="mt-3">
+            <strong>Cluster 1:</strong> Agrupa prestadores con niveles intermedios de capacidad,
+            tanto en cantidad como en variedad de servicios. Estas instituciones presentan una
+            cobertura moderada y mayor desarrollo en comparación con los de baja capacidad.
+        </p>
+
+        <p class="mt-3">
+            <strong>Cluster 2:</strong> Incluye prestadores con alta cantidad de capacidad instalada,
+            lo que indica una mayor disponibilidad de recursos y una cobertura más amplia en la
+            prestación de servicios de salud.
+        </p>
+
+        <p class="mt-3">
+            <strong>Cluster 3:</strong> Está conformado por prestadores con alta diversidad de tipos
+            de capacidad, lo que sugiere mayor complejidad, especialización o amplitud en los servicios ofrecidos.
+        </p>
+
+        <p class="mt-3">
+            En general, el modelo permitió segmentar los prestadores en función de su nivel de
+            capacidad y complejidad, facilitando la identificación de patrones dentro del sistema
+            de salud. Esta clasificación puede ser utilizada como herramienta de apoyo para la
+            planificación, evaluación y toma de decisiones en la gestión de recursos sanitarios.
+        </p>
+
+    </div>
+
+    <h3 class="subtitulo">Conclusiones</h3>
+
+    <div class="caja-texto">
+
+        <p>
+            El uso del algoritmo K-Means permitió agrupar de manera eficiente los prestadores de
+            servicios de salud en categorías homogéneas, evidenciando diferencias claras en términos
+            de capacidad instalada.
+        </p>
+
+        <p class="mt-3">
+            La implementación del método del codo permitió seleccionar un número adecuado de clusters,
+            garantizando un equilibrio entre simplicidad e interpretación del modelo.
+        </p>
+
+        <p class="mt-3">
+            Finalmente, la visualización de los datos y la interpretación de los clusters permiten
+            comprender mejor la estructura del sistema de salud, facilitando análisis más profundos
+            y la generación de estrategias basadas en datos.
+        </p>
+
+    </div>
+
+</div>
+
+</body>
+</html>

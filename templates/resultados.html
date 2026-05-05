@@ -1,0 +1,208 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <title>Capacidad Hospitalaria - Resultados</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet">
+    
+</head>
+<body>
+
+<nav class="navbar navbar-expand-lg navbar-dark navbar-personalizado">
+    <div class="container">
+        <a class="navbar-brand marca" href="/">CapacidadHospitalaria</a>
+
+        <div class="collapse navbar-collapse">
+            <ul class="navbar-nav ms-auto">
+                <li class="nav-item">
+                    <a class="nav-link" href="/">Problema</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="/dataset">Dataset</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="/modelo">Modelo</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link active" href="/resultados">Resultados</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="/interpretacion">Interpretación</a>
+                </li>
+            </ul>
+        </div>
+    </div>
+</nav>
+
+<div class="container contenedor-principal">
+
+    <h1 class="titulo-principal">Resultados del Clustering</h1>
+
+    <div class="caja-texto">
+        <p>
+            El modelo identificó automáticamente <strong>{{ info.k }}</strong> clusters
+            como número de agrupamientos utilizado para segmentar los prestadores de servicios de salud.
+        </p>
+    </div>
+
+    <h3 class="subtitulo">Resumen de Clusters</h3>
+
+        {% if cluster_actual is not none %}
+    <p class="text-center text-success">
+        Mostrando datos del Cluster {{ cluster_actual }}
+    </p>
+    {% else %}
+    <p class="text-center text-light">
+        Mostrando todos los clusters
+    </p>
+    {% endif %}
+
+    <h3 class="subtitulo">Filtrar Clusters</h3>
+
+    <div class="caja-texto text-center">
+
+        <a href="/resultados" class="btn btn-outline-light m-1">
+            Todos
+        </a>
+
+        {% for i in range(info.k) %}
+        <a href="/resultados?cluster={{ i }}" class="btn btn-outline-success m-1">
+            Cluster {{ i }}
+        </a>
+        {% endfor %}
+
+    </div>
+    <h3 class="subtitulo">Interpretación del Cluster</h3>
+
+    <div class="caja-texto">
+
+        {% if cluster_actual is none %}
+
+            <p>
+                Selecciona un cluster para ver su interpretación específica. Cada grupo representa
+                un tipo de prestador según su capacidad instalada y características operativas.
+            </p>
+
+        {% elif cluster_actual == '0' or cluster_actual == 0 %}
+
+            <p>
+                <strong>Cluster 0:</strong> Representa prestadores con baja capacidad instalada,
+                tanto en cantidad como en diversidad de servicios. Este grupo corresponde a
+                instituciones pequeñas o con oferta limitada.
+            </p>
+
+        {% elif cluster_actual == '1' or cluster_actual == 1 %}
+
+            <p>
+                <strong>Cluster 1:</strong> Agrupa prestadores con niveles intermedios de capacidad.
+                Se caracterizan por tener una cantidad moderada de recursos y una oferta de servicios
+                más amplia que los de baja capacidad.
+            </p>
+
+        {% elif cluster_actual == '2' or cluster_actual == 2 %}
+
+            <p>
+                <strong>Cluster 2:</strong> Incluye prestadores con alta cantidad de capacidad instalada,
+                lo que indica una mayor disponibilidad de recursos y cobertura en la prestación de servicios de salud.
+            </p>
+
+        {% elif cluster_actual == '3' or cluster_actual == 3 %}
+
+            <p>
+                <strong>Cluster 3:</strong> Representa prestadores con alta diversidad en tipos de capacidad,
+                lo que sugiere mayor complejidad o especialización en los servicios ofrecidos.
+            </p>
+
+        {% endif %}
+
+    </div>
+
+    <div class="caja-texto">
+        <ul class="list-group list-group-flush">
+            {% for cluster, cantidad in info.resumen_clusters.items() %}
+            <li class="list-group-item bg-transparent text-light d-flex justify-content-between">
+                Cluster {{ cluster }}
+                <span>{{ cantidad }} registros</span>
+            </li>
+            {% endfor %}
+        </ul>
+    </div>
+
+    <h3 class="subtitulo">Registros Clasificados</h3>
+
+    <div class="caja-texto">
+        <div class="table-responsive">
+            <table class="table table-dark table-hover align-middle">
+                <thead>
+                    <tr>
+                        <th>Prestador</th>
+                        <th>Código Capacidad</th>
+                        <th>Cantidad</th>
+                        <th>Grupo Capacidad</th>
+                        <th>Cluster</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for fila in info.resultados[:100] %}
+                    <tr>
+                        <td>{{ fila.prestador }}</td>
+                        <td>{{ fila.codigo_capacidad }}</td>
+                        <td>{{ fila.cantidad }}</td>
+                        <td>{{ fila.grupo_capacidad }}</td>
+                        <td>{{ fila.cluster }}</td>
+                    </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+        </div>
+
+        <p class="mt-3">
+            Se muestran los primeros 100 registros clasificados.
+        </p>
+    </div>
+
+    <h3 class="subtitulo">Visualización de los Clústeres</h3>
+
+    
+
+
+<h3 class="subtitulo">Visualización de los Clústeres</h3>
+
+<div class="caja-texto">
+    <p>
+        La siguiente gráfica muestra la distribución de los registros agrupados.
+    </p>
+
+    <div class="text-center mt-4">
+        <img src="{{ url_for('static', filename='clusters.png') }}"
+             class="img-fluid rounded">
+    </div>
+</div>
+
+    <h3 class="subtitulo">Interpretación de Resultados</h3>
+
+    <div class="caja-texto">
+        <p>
+            El agrupamiento permitió identificar conjuntos de prestadores con comportamientos
+            similares en términos de capacidad instalada.
+        </p>
+
+        <p class="mt-3">
+            Algunos clusters concentran prestadores con menor capacidad registrada,
+            mientras que otros reúnen prestadores con mayor cantidad instalada o con
+            mayor diversidad de capacidad habilitada.
+        </p>
+
+        <p class="mt-3">
+            Esta segmentación facilita el análisis comparativo y puede servir como apoyo
+            para procesos de planeación, evaluación y distribución de recursos dentro
+            de la red de prestación de servicios de salud.
+        </p>
+    </div>
+
+</div>
+
+</body>
+</html>

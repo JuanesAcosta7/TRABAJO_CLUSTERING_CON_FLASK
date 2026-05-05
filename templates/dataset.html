@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <title>Capacidad Hospitalaria - Dataset</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet">
+</head>
+<body>
+
+<nav class="navbar navbar-expand-lg navbar-dark navbar-personalizado">
+    <div class="container">
+        <a class="navbar-brand marca" href="/">CapacidadHospitalaria</a>
+
+        <div class="collapse navbar-collapse">
+            <ul class="navbar-nav ms-auto">
+                <li class="nav-item">
+                    <a class="nav-link" href="/">Problema</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link active" href="/dataset">Dataset</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="/modelo">Modelo</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="/resultados">Resultados</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="/interpretacion">Interpretación</a>
+            </ul>
+        </div>
+    </div>
+</nav>
+
+<div class="container contenedor-principal">
+
+    <h1 class="titulo-principal">Descripción del Dataset</h1>
+
+    <div class="caja-texto">
+        <p>
+            Para el desarrollo del ejercicio se utilizó un dataset relacionado con la capacidad instalada
+            en la red de prestación de servicios de salud. El archivo contiene información sobre prestadores,
+            grupos de capacidad habilitada, códigos de capacidad y cantidades registradas dentro del sistema.
+        </p>
+
+        <p class="mt-3">
+            El dataset empleado contiene aproximadamente 5.461 registros, lo cual permite aplicar técnicas
+            de agrupamiento sobre un volumen suficiente de datos para identificar patrones de comportamiento
+            entre prestadores de servicios de salud.
+        </p>
+    </div>
+
+    <h3 class="subtitulo">Variables Utilizadas</h3>
+
+    <div class="caja-texto">
+        <p><strong>Nombre del Prestador:</strong> identifica el prestador de servicios de salud registrado.</p>
+        <p class="mt-2"><strong>Grupo Capacidad:</strong> clasifica el tipo general de capacidad habilitada.</p>
+        <p class="mt-2"><strong>Código Capacidad:</strong> representa de forma numérica el tipo específico de capacidad registrada.</p>
+        <p class="mt-2"><strong>Cantidad:</strong> indica el volumen de capacidad instalada reportado por el prestador.</p>
+    </div>
+
+    <h3 class="subtitulo">Preparación de Datos</h3>
+
+    <div class="caja-texto">
+        <p>
+            Como parte del proceso de preparación, se seleccionaron únicamente las variables relevantes
+            para el análisis. Posteriormente, se eliminaron registros con valores nulos y se transformó
+            la variable categórica correspondiente al grupo de capacidad en valores numéricos, con el fin
+            de permitir su utilización dentro del algoritmo K-Means.
+        </p>
+    </div>
+    <h3 class="subtitulo">Fuente del Dataset</h3>
+
+    <div class="caja-texto">
+        <p>
+            El dataset utilizado corresponde a información pública relacionada con capacidad instalada
+            de la red de prestación de servicios de salud.
+        </p>
+
+        <p class="mt-3">
+            Enlace de consulta:
+            <a href="https://datos.cali.gov.co/pt_PT/dataset/capacidad-instalada-de-la-red-de-prestacion-de-servicios-habilitada/resource/3fbdcd19-ac65-492a-9b48-ac950214b699?" target="_blank" class="link-dataset">
+                Ver dataset original
+        </a>
+        </p>
+    </div>
+</div>
+
+</body>
+</html>
