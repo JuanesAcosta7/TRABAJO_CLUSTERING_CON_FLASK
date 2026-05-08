@@ -1,5 +1,6 @@
 from flask import Flask,render_template, request
 import Clustering
+from Spark import obtener_resultados
 
 app = Flask(__name__)
 
@@ -44,3 +45,13 @@ def resultados():
 @app.route('/interpretacion')
 def interpretacion():
     return render_template('interpretacion.html')
+
+@app.route('/spark')
+def spark():
+    resultados = obtener_resultados()
+
+    return render_template(
+        'ResSpark.html', 
+         ventas_ciudad=resultados["ventas_ciudad"],
+         ventas_categoria=resultados["ventas_categoria"],
+         promedio_tienda=resultados["promedio_tienda"])
