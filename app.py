@@ -2,6 +2,7 @@ from flask import Flask,render_template, request
 import Clustering
 from Spark import obtener_resultados
 
+
 app = Flask(__name__)
 
 @app.route('/hello/')
@@ -55,3 +56,6 @@ def spark():
          ventas_ciudad=resultados["ventas_ciudad"],
          ventas_categoria=resultados["ventas_categoria"],
          promedio_tienda=resultados["promedio_tienda"])
+
+if __name__ == "__main__":
+    app.run(debug=True, use_reloader=False)

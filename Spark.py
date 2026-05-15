@@ -9,7 +9,7 @@ os.environ['PYSPARK_DRIVER_PYTHON'] = sys.executable
 def get_spark_session():
     spark = SparkSession.builder \
         .appName("AnalisisVentasLocal") \
-        .master("local[1]") \
+        .master("spark://10.40.1.97:7077") \
         .config("spark.driver.host", "127.0.0.1") \
         .config("spark.driver.bindAddress", "127.0.0.1") \
         .config("spark.ui.enabled", "false") \
@@ -20,7 +20,9 @@ def get_spark_session():
 
 def cargar_datos():
     spark = get_spark_session()
-    df = spark.read.csv("ventas.csv", header=True, inferSchema=True)
+    df = spark.read.csv( "file:///C:/sparkpro/ventas.csv", header=True,
+        inferSchema=True
+        )
     df = df.withColumn("Total", col("cantidad") * col("precio_unitario"))
 
     return df
