@@ -1,7 +1,7 @@
 from flask import Flask, render_template, request
 from Spark import obtener_resultados
 
-# 🔥 CORRECTO (antes tenías _name_)
+
 app = Flask(__name__)
 
 
