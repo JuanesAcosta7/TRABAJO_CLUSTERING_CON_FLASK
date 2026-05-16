@@ -9,7 +9,7 @@ os.environ['PYSPARK_DRIVER_PYTHON'] = sys.executable
 def get_spark_session():
     spark = SparkSession.builder \
         .appName("AnalisisVentasLocal") \
-        .master("spark://10.40.1.97:7077") \
+        .master("spark://172.20.10.14:7077") \
         .config("spark.driver.host", "127.0.0.1") \
         .config("spark.driver.bindAddress", "127.0.0.1") \
         .config("spark.ui.enabled", "false") \
