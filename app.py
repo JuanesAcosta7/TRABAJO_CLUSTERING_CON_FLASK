@@ -22,7 +22,7 @@ def spark_route():
     )
 
 
-# 🔥 CORRECTO ENTRY POINT
+
 if __name__ == "__main__":
     app.run(debug=True, use_reloader=False)
     

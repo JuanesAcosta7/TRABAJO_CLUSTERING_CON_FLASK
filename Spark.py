@@ -7,14 +7,17 @@ from pyspark.sql.functions import col, sum, avg, desc
 os.environ['PYSPARK_PYTHON'] = sys.executable
 os.environ['PYSPARK_DRIVER_PYTHON'] = sys.executable
 
-# 🔥 SPARK SE CREA UNA SOLA VEZ (IMPORTANTE)
+
 spark = SparkSession.builder \
     .appName("AnalisisVentasLocal") \
     .master("spark://192.168.80.17:7077") \
-    .config("spark.driver.host", "172.20.10.14") \
+    .config("spark.driver.host", "192.168.80.17") \
     .config("spark.driver.bindAddress", "0.0.0.0") \
+    .config("spark.executor.memory", "1g") \
+    .config("spark.driver.memory", "1g") \
+    .config("spark.executor.cores", "2") \
+    .config("spark.cores.max", "2") \
     .getOrCreate()
-
 
 def cargar_datos():
     df = spark.read.csv(
