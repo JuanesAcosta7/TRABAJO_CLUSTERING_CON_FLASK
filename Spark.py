@@ -21,9 +21,10 @@ spark = SparkSession.builder \
 
 def cargar_datos():
     df = spark.read.csv(
-        "file:///C:/sparkpro/ventas.csv",
+        "file:///C:/sparkpro/ventas_2_millones.csv",
         header=True,
-        inferSchema=True
+        inferSchema=True,
+        encoding="ISO-8859-1"
     )
 
     df = df.withColumn("Total", col("cantidad") * col("precio_unitario"))

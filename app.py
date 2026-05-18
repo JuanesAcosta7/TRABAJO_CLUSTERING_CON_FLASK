@@ -1,5 +1,6 @@
 from flask import Flask, render_template, request
 from Spark import obtener_resultados
+import time
 
 
 app = Flask(__name__)
@@ -12,7 +13,14 @@ def home():
 
 @app.route('/')
 def spark_route():
+    inicio = time.time()
+
     resultados = obtener_resultados()
+
+    fin = time.time()
+
+    print("Tiempo de ejecución:", fin - inicio, "segundos")
+
 
     return render_template(
         'ResSpark.html',
